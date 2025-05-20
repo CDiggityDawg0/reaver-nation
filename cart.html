@@ -51,8 +51,8 @@
                         </div>
                     </div>
                 </td>
-                <td><input type="number" value="1"></td>
-                <td>$34.99</td>
+                <td><input type="number" value="1" min="0" class="quantity"></td>
+                <td class="subtotal" data-price="34.99">$34.99</td>
             </tr>
             <tr>
                 <td>
@@ -66,8 +66,8 @@
                         </div>
                     </div>
                 </td>
-                <td><input type="number" value="1"></td>
-                <td>$29.99</td>
+                <td><input type="number" value="1" min="0" class="quantity"></td>
+                <td class="subtotal" data-price="29.99">$29.99</td>
             </tr>
         </table>
 
@@ -127,6 +127,39 @@
                 MenuItems.style.maxHeight = "0px";
             }
         }
+
+
+        function updateCart(){
+            var total = 0;
+            const quantities = document.querySelectorAll('.quantity');
+            const subtotals = document.querySelectorAll('.subtotal');
+
+            quantities.forEach((input, index) =>{
+                const price = parseFloat(subtotals[index].dataset.price);
+                const quantity = parseInt(input.value) || 0;
+                const newSubtotal = (price * quantity).toFixed(2);
+                subtotals[index].textContent = `$${newSubtotal}`;
+                total += price * quantity;
+            });
+
+            const subtotalCell = document.querySelector('.total-price table tr:nth-child(1) td:nth-child(2)');
+            const taxCell = document.querySelector('.total-price table tr:nth-child(2) td:nth-child(2)');
+            const totalCell = document.querySelector('.total-price table tr:nth-child(3) td:nth-child(2)');
+
+            const tax = +(total * 0.06).toFixed(2); // 6% tax, adjust as needed
+            const grandTotal = (total + tax).toFixed(2);
+
+            subtotalCell.textContent = `$${total.toFixed(2)}`;
+            taxCell.textContent = `$${tax.toFixed(2)}`;
+            totalCell.textContent = `$${grandTotal}`;
+        }
+        
+        document.querySelectorAll('.quantity').forEach(input => {
+        input.addEventListener('input', updateCart);
+        });
+
+        // Initial calculation
+        updateCart();
     </script>
 </body>
 </html>
