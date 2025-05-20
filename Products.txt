@@ -1,0 +1,22 @@
+#This is where products are entered. Hashtags are comments. Go to a new line and type [New Product] to indicate a new product. After, follow this format:
+#[New Product]
+#Product Name
+#Price (Without dollar sign)
+#Category
+#Product description
+#Filepath to image1 (A copy will be made and stored in website folder)
+#Filepath to image2
+#Filepath to image3
+#Filepath to image4
+#Add a blank line so it works properly
+
+
+[New Product]
+Basic T-Shirt
+24.99
+Shirts
+Just a basic white T-shirt... Nothing to special.
+"C:\Users\colli\Downloads\OIP.jpg"
+"C:\Users\colli\Downloads\02_white-tee_back-scaled.jpg"
+"C:\Users\colli\Downloads\OIP (1).jpg"
+"C:\Users\colli\Downloads\OIP (2).jpg"
